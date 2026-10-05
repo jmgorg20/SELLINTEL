@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SELLINTEL | Custom Amazon seller automation, built for you</title>
+<meta name="description" content="We build a customised Amazon seller dashboard for your business: sourcing, real profit, orders, stock, invoices and payouts in one place. Try the live demo." />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/icon-192.png" />
+<style>
+:root{
+  --bg:#ffffff; --soft:#f5f8fd; --ink:#071a33; --muted:#52627a; --line:#e3e9f3;
+  --accent:#0a66ff; --accent-d:#0850cc; --good:#12a46b; --card:#ffffff;
+  --radius:16px; --shadow:0 18px 50px rgba(10,40,100,.10);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#060d1a;--soft:#0b1628;--ink:#eef3fb;--muted:#9fb0c8;--line:#1a2a44;--card:#0c1a2f;--shadow:0 18px 50px rgba(0,0,0,.45)}}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav img{height:38px;width:auto;display:block}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:15px;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:600;font-size:16px;border:1px solid transparent;cursor:pointer;transition:.18s}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 22px rgba(10,102,255,.28)}
+.btn-primary:hover{background:var(--accent-d);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{padding:9px 16px;font-size:14px;border-radius:10px}
+.hero{padding:84px 0 40px;text-align:center}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:6px 14px;border-radius:999px}
+h1{font-size:clamp(34px,5.6vw,60px);line-height:1.07;letter-spacing:-.03em;margin:22px auto 18px;max-width:880px}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:720px;margin:0 auto 32px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.fine{font-size:14px;color:var(--muted);margin-top:16px}
+/* dashboard mock */
+.preview{margin:54px auto 0;max-width:980px;border-radius:20px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);overflow:hidden;text-align:left}
+.pv-bar{display:flex;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
+.pv-bar i{width:11px;height:11px;border-radius:50%;background:#d5deec;display:block}
+.pv{display:grid;grid-template-columns:190px 1fr}
+.pv-side{padding:18px 14px;border-right:1px solid var(--line);background:var(--soft);font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.pv-side b{padding:8px 10px;border-radius:8px;font-weight:600}
+.pv-side b.on{background:var(--accent);color:#fff}
+.pv-main{padding:22px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi small{color:var(--muted);font-size:12px;display:block}
+.kpi strong{font-size:22px;letter-spacing:-.02em}
+.kpi span{font-size:12px;color:var(--good);font-weight:600}
+.chart{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:16px;height:170px;display:flex;align-items:flex-end;gap:7px}
+.chart i{flex:1;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--accent),#6fa8ff);opacity:.9}
+.chart i:nth-child(even){opacity:.55}
+section{padding:80px 0}
+.soft{background:var(--soft)}
+h2{font-size:clamp(28px,3.8vw,42px);letter-spacing:-.025em;line-height:1.12;margin:0 0 14px;text-align:center}
+.lead{text-align:center;color:var(--muted);font-size:18px;max-width:640px;margin:0 auto 46px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:22px;margin-bottom:16px;background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.card h3{margin:0 0 8px;font-size:19px;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+.step{position:relative;padding:28px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line)}
+.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;margin-bottom:14px}
+.step h3{margin:0 0 6px;font-size:19px}.step p{margin:0;color:var(--muted);font-size:15px}
+.incl{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.incl h2{text-align:left}
+.incl .lead{text-align:left;margin:0 0 22px}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.list li{display:flex;gap:12px;align-items:flex-start;font-size:16px}
+.list li:before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good);font-weight:800;font-size:14px;margin-top:1px}
+.panel{border-radius:20px;padding:34px;background:linear-gradient(145deg,#0a2a63,#0a66ff);color:#fff;box-shadow:var(--shadow)}
+.panel h3{margin:0 0 6px;font-size:24px}.panel p{margin:0 0 20px;opacity:.88}
+.panel .btn{background:#fff;color:#0a2a63}
+.final{text-align:center}
+.final .cta{margin-top:24px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:14px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.foot img{height:30px}
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.incl{grid-template-columns:1fr}.incl h2,.incl .lead{text-align:center}}
+@media(max-width:640px){
+  .nav-links a.hide-m{display:none}.nav img{height:32px}
+  .hero{padding:52px 0 24px}.cards{grid-template-columns:1fr}
+  .pv{grid-template-columns:1fr}.pv-side{display:none}.kpis{grid-template-columns:1fr 1fr}
+  section{padding:56px 0}.btn{width:100%}.cta{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="#top" aria-label="SELLINTEL home"><img src="/assets/sellintel-logo.png" alt="SELLINTEL" /></a>
+    <nav class="nav-links">
+      <a class="hide-m" href="#features">What you get</a>
+      <a class="hide-m" href="#how">How it works</a>
+      <a class="hide-m" href="#included">Included</a>
+      <a class="btn btn-primary btn-sm" href="/signin">Live demo</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap hero">
+  <span class="eyebrow">Custom-built for Amazon sellers</span>
+  <h1>Your Amazon business, <em>fully automated</em> in one dashboard.</h1>
+  <p class="sub">We build and set up a customised system for you: find profitable products, see your real profit after every fee, and keep orders, stock, invoices and payouts in sync. All connected to your own accounts.</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="/signin">Try the live demo →</a>
+    <a class="btn btn-ghost" href="#contact">Book a call</a>
+  </div>
+  <p class="fine">No sign-up needed. Use any username and password to look around.</p>
+
+  <div class="preview" aria-label="Dashboard preview">
+    <div class="pv-bar"><i></i><i></i><i></i></div>
+    <div class="pv">
+      <div class="pv-side"><b class="on">Overview</b><b>Sourcing</b><b>Leads</b><b>Orders</b><b>Inventory</b><b>Profit</b><b>Invoices</b><b>Payouts</b></div>
+      <div class="pv-main">
+        <div class="kpis">
+          <div class="kpi"><small>Sales (30d)</small><strong>£48,210</strong><br><span>▲ 12.4%</span></div>
+          <div class="kpi"><small>Net profit</small><strong>£9,874</strong><br><span>▲ 8.1%</span></div>
+          <div class="kpi"><small>ROI</small><strong>41.6%</strong><br><span>▲ 2.3 pts</span></div>
+          <div class="kpi"><small>Open leads</small><strong>128</strong><br><span>14 new today</span></div>
+        </div>
+        <div class="chart" aria-hidden="true"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:64%"></i><i style="height:58%"></i><i style="height:72%"></i><i style="height:66%"></i><i style="height:80%"></i><i style="height:74%"></i><i style="height:90%"></i><i style="height:84%"></i><i style="height:96%"></i></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features" class="soft">
+  <div class="wrap">
+    <h2>Everything you run, in one place</h2>
+    <p class="lead">Four things that normally take hours of spreadsheets, handled automatically.</p>
+    <div class="cards">
+      <div class="card"><div class="ico">🔎</div><h3>Find profitable leads</h3><p>Supplier lists are matched to Amazon automatically, with fees, price history and ROI already worked out.</p></div>
+      <div class="card"><div class="ico">💷</div><h3>Know your real profit</h3><p>Every sale shows profit after Amazon fees, postage, VAT and your cost, down to each SKU.</p></div>
+      <div class="card"><div class="ico">📦</div><h3>Orders and stock together</h3><p>Orders, shipments, reorders and stock levels in one view, so nothing runs out unnoticed.</p></div>
+      <div class="card"><div class="ico">🧾</div><h3>Invoices and payouts on autopilot</h3><p>Supplier invoices are read and matched to stock, and payouts reconcile without manual work.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lead">Simple, fixed process. You stay in control the whole way.</p>
+    <div class="steps">
+      <div class="step"><h3>Tell us what you need</h3><p>A short call about your business, suppliers and the way you work today.</p></div>
+      <div class="step"><h3>We customise and build</h3><p>We set up your own version of the system with your branding, your rules and your workflows.</p></div>
+      <div class="step"><h3>Add your accounts, go live</h3><p>You connect your own credentials and the automation starts running for your business.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="included" class="soft">
+  <div class="wrap incl">
+    <div>
+      <h2>Built around your business</h2>
+      <p class="lead">Not a one-size-fits-all tool. Everything is customised for how you sell.</p>
+      <ul class="list">
+        <li>Your own dashboard, branded for your business</li>
+        <li>Product sourcing, profit and fee calculations tuned to your rules</li>
+        <li>Orders, stock, shipments, invoices and payouts connected</li>
+        <li>Alerts and daily automation running in the background</li>
+        <li>Set-up, testing and hand-over done for you</li>
+      </ul>
+    </div>
+    <div class="panel" id="contact">
+      <h3>See it before you decide</h3>
+      <p>The demo is a full working copy with sample data. Click through every page.</p>
+      <a class="btn" href="/signin">Open the live demo →</a>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Ready to automate your Amazon business?</h2>
+    <p class="lead" style="margin-bottom:0">Try the demo, then book a call and we will scope your custom build.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="/signin">Try the live demo →</a>
+      <a class="btn btn-ghost" href="mailto:hello@sellintel.example">Book a call</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="/assets/sellintel-logo.png" alt="SELLINTEL" />
+    <span>© <span id="y"></span> SELLINTEL. The demo uses sample data only.</span>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>

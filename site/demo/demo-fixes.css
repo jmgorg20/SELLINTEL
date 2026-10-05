@@ -1,0 +1,7 @@
+/* SELLINTEL demo: small layout fixes layered on top of the unmodified app CSS. */
+@media (max-width: 760px) {
+  .hx-oneline { flex-wrap: wrap !important; }
+  .hx-oneline select { flex: 1 1 150px !important; min-width: 0; max-width: 100%; }
+  .hx-oneline .hub-search { flex: 1 1 100% !important; }
+  .hub-card-actions { min-width: 0; max-width: 100%; }
+}

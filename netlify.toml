@@ -1,0 +1,14 @@
+[build]
+  publish = "site"
+[[redirects]]
+  from = "/dashboard/*"
+  to = "/app.html"
+  status = 200
+[[redirects]]
+  from = "/login"
+  to = "/signin"
+  status = 301
+[[redirects]]
+  from = "/signin"
+  to = "/app.html"
+  status = 200
