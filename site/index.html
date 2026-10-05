@@ -29,30 +29,21 @@ header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 8
 .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-sm{padding:9px 16px;font-size:14px;border-radius:10px}
-.hero{padding:84px 0 40px;text-align:center}
+.hero{padding:84px 20px 40px;text-align:center}
 .eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:6px 14px;border-radius:999px}
 h1{font-size:clamp(34px,5.6vw,60px);line-height:1.07;letter-spacing:-.03em;margin:22px auto 18px;max-width:880px}
 h1 em{font-style:normal;color:var(--accent)}
 .sub{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:720px;margin:0 auto 32px}
 .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .fine{font-size:14px;color:var(--muted);margin-top:16px}
-/* dashboard mock */
-.preview{margin:54px auto 0;max-width:980px;border-radius:20px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);overflow:hidden;text-align:left}
-.pv-bar{display:flex;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
-.pv-bar i{width:11px;height:11px;border-radius:50%;background:#d5deec;display:block}
-.pv{display:grid;grid-template-columns:190px 1fr}
-.pv-side{padding:18px 14px;border-right:1px solid var(--line);background:var(--soft);font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
-.pv-side b{padding:8px 10px;border-radius:8px;font-weight:600}
-.pv-side b.on{background:var(--accent);color:#fff}
-.pv-main{padding:22px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.kpi{border:1px solid var(--line);border-radius:12px;padding:14px}
-.kpi small{color:var(--muted);font-size:12px;display:block}
-.kpi strong{font-size:22px;letter-spacing:-.02em}
-.kpi span{font-size:12px;color:var(--good);font-weight:600}
-.chart{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:16px;height:170px;display:flex;align-items:flex-end;gap:7px}
-.chart i{flex:1;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--accent),#6fa8ff);opacity:.9}
-.chart i:nth-child(even){opacity:.55}
+/* demo video */
+.demo-video{position:relative;margin:54px auto 0;max-width:980px;aspect-ratio:16/9;border-radius:20px;border:1px solid var(--line);background:#0b1628;box-shadow:var(--shadow);overflow:hidden}
+.demo-video video{display:block;width:100%;height:100%;object-fit:cover;background:#0b1628}
+.sound-chip{position:absolute;right:12px;top:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:0;cursor:pointer;font:600 13px/1 Inter,system-ui,sans-serif;color:#fff;background:rgba(7,26,51,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 6px 18px rgba(0,0,0,.25);transition:.18s}
+.sound-chip:hover{background:rgba(10,102,255,.92)}
+.sound-chip[hidden]{display:none}
+.sound-chip:focus-visible,.demo-video video:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.video-note{margin:14px auto 0;font-size:14px;color:var(--muted);text-align:center}
 section{padding:80px 0}
 .soft{background:var(--soft)}
 h2{font-size:clamp(28px,3.8vw,42px);letter-spacing:-.025em;line-height:1.12;margin:0 0 14px;text-align:center}
@@ -84,8 +75,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-s
 @media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.incl{grid-template-columns:1fr}.incl h2,.incl .lead{text-align:center}}
 @media(max-width:640px){
   .nav-links a.hide-m{display:none}.nav img{height:32px}
-  .hero{padding:52px 0 24px}.cards{grid-template-columns:1fr}
-  .pv{grid-template-columns:1fr}.pv-side{display:none}.kpis{grid-template-columns:1fr 1fr}
+  .hero{padding:52px 16px 24px}.cards{grid-template-columns:1fr}
+  .demo-video{aspect-ratio:9/16;max-width:min(100%,calc(78vh * 9 / 16));max-width:min(100%,calc(78svh * 9 / 16));border-radius:16px}
   section{padding:56px 0}.btn{width:100%}.cta{flex-direction:column}
 }
 </style>
@@ -114,21 +105,43 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-s
   </div>
   <p class="fine">No sign-up needed. Use any username and password to look around.</p>
 
-  <div class="preview" aria-label="Dashboard preview">
-    <div class="pv-bar"><i></i><i></i><i></i></div>
-    <div class="pv">
-      <div class="pv-side"><b class="on">Overview</b><b>Sourcing</b><b>Leads</b><b>Orders</b><b>Inventory</b><b>Profit</b><b>Invoices</b><b>Payouts</b></div>
-      <div class="pv-main">
-        <div class="kpis">
-          <div class="kpi"><small>Sales (30d)</small><strong>£48,210</strong><br><span>▲ 12.4%</span></div>
-          <div class="kpi"><small>Net profit</small><strong>£9,874</strong><br><span>▲ 8.1%</span></div>
-          <div class="kpi"><small>ROI</small><strong>41.6%</strong><br><span>▲ 2.3 pts</span></div>
-          <div class="kpi"><small>Open leads</small><strong>128</strong><br><span>14 new today</span></div>
-        </div>
-        <div class="chart" aria-hidden="true"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:64%"></i><i style="height:58%"></i><i style="height:72%"></i><i style="height:66%"></i><i style="height:80%"></i><i style="height:74%"></i><i style="height:90%"></i><i style="height:84%"></i><i style="height:96%"></i></div>
-      </div>
-    </div>
+  <div class="demo-video" id="demoVideo">
+    <video id="heroVideo" controls muted loop playsinline preload="none" tabindex="0"
+      src="/assets/sellintel-demo-wide.mp4"
+      aria-label="SELLINTEL product video: your whole Amazon business in one dashboard"></video>
+    <button type="button" class="sound-chip" id="soundChip" aria-label="Turn sound on">🔊 Tap for sound</button>
   </div>
+  <p class="video-note">30-second tour. Everything you see is sample data.</p>
+  <script>
+  (function(){
+    var v=document.getElementById('heroVideo'),chip=document.getElementById('soundChip');
+    if(!v)return;
+    var mq=window.matchMedia('(max-width:640px)'),cur='';
+    function pick(){
+      var k=mq.matches?'tall':'wide'; if(k===cur)return; cur=k;
+      var was=!v.paused;
+      v.poster='/assets/sellintel-demo-'+k+'.jpg';
+      v.src='/assets/sellintel-demo-'+k+'.mp4';
+      v.load(); if(was){try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
+    }
+    pick();
+    if(mq.addEventListener)mq.addEventListener('change',pick);else if(mq.addListener)mq.addListener(pick);
+    function sync(){chip.hidden=!v.muted||v.volume===0;}
+    v.addEventListener('volumechange',sync);sync();
+    chip.addEventListener('click',function(){v.muted=false;if(v.volume===0)v.volume=1;v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){});sync();});
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if('IntersectionObserver' in window){
+      var userPaused=false;
+      v.addEventListener('pause',function(){if(v.dataset.auto!=='1')userPaused=true;v.dataset.auto='';});
+      v.addEventListener('play',function(){userPaused=false;});
+      new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting&&e.intersectionRatio>=.4){
+          if(!reduce&&v.paused&&!userPaused){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+        }else if(!v.paused){v.dataset.auto='1';v.pause();}
+      });},{threshold:[0,.4]}).observe(v);
+    }
+  })();
+  </script>
 </div>
 
 <section id="features" class="soft">
