@@ -212,7 +212,7 @@ body::before {
 .hub-main .queue-row,
 .hub-main .invoice-correction-row,
 .hub-main .profile-row,
-.hub-main .scent-panel,
+.hub-main .ftd-panel,
 .hub-main .stock-card,
 .hub-main .stock-total {
   border-color: rgba(214, 223, 237, .85);
@@ -237,7 +237,7 @@ body::before {
 .hub-main .queue-row,
 .hub-main .invoice-correction-row,
 .hub-main .profile-row,
-.hub-main .scent-panel,
+.hub-main .ftd-panel,
 .hub-main .stock-card,
 .hub-main .stock-total {
   background: linear-gradient(180deg, rgba(255, 255, 255, .97), rgba(255, 255, 255, .9));
@@ -314,7 +314,7 @@ body::before {
 /* 8. Buttons, tabs, filter pills ---------------------------------------- */
 .hub-main .hub-btn,
 .hub-main .primary-button,
-.hub-main .scent-drag-btn {
+.hub-main .ftd-drag-btn {
   border-radius: 10px;
   border-color: var(--hub-primary);
   background: var(--hub-primary);

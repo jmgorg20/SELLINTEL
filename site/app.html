@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="robots" content="noindex,nofollow" />
+    <script>
+      /* The bundled app also ships its own marketing page. The demo has its own landing page at "/", so never show that one. */
+      (function () {
+        if (location.pathname === '/app.html') { location.replace('/'); return; }
+        var mo = new MutationObserver(function () {
+          if (document.querySelector('.mohsin-landing')) { mo.disconnect(); location.replace('/'); }
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+          mo.observe(document.body, { childList: true, subtree: true });
+          if (document.querySelector('.mohsin-landing')) { mo.disconnect(); location.replace('/'); }
+        });
+      })();
+    </script>
     <meta name="theme-color" content="#eef2f8" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />

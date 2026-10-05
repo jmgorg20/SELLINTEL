@@ -414,7 +414,7 @@
     return { order_id: id, settled: !!o && o.day < addDays(D.today, -3), fees: fees, invoices: inv.slice(0, 2) };
   };
   A.order_lookup = function (b) {
-    var id = String(b.order_id || '').trim(); if (!ORDER_RE.test(id)) throw UserError('That is not an Amazon order number. It looks like 026-3010693-4057903.');
+    var id = String(b.order_id || '').trim(); if (!ORDER_RE.test(id)) throw UserError('That is not an Amazon order number. It looks like 123-4567890-1234567.');
     var o = findOrder(id); if (!o) return { found: false };
     var ls = D.lines().filter(function (l) { return l.amazon_order_id === id; });
     var refunded = ls.filter(function (l) { return l._l.refund; });
